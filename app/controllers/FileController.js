@@ -23,8 +23,9 @@ const upload = multer({
 
 module.exports.uploadFile = (req, res, next) => {
   upload.single("file")(req, res, (err) => {
-    if (!req.file && err) {
-      res.json({ error: err.message });
+    if (!req.file && !err) return res.status(404).json({ error: "No file selected" });
+    if (err) {
+      res.status(404).json({ error: err.message });
     } else {
       res.status(200).json({ result: "File uploaded" });
     }

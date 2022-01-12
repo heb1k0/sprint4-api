@@ -1,4 +1,8 @@
-exports.cacheController = (req, res, next) => {
+exports.cacheandCorsController = (req, res, next) => {
     res.setHeader('Cache-control', 'no-cache');
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
     next();
 }
