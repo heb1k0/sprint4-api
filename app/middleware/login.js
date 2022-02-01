@@ -1,13 +1,13 @@
 module.exports.islogin = (req, res, next) => {
   try {
-    if (!req.headers.userid && !req.headers.password) {
+    if (!req.headers.username && !req.headers.password) {
       throw 'Invalid user ID';
     } else {
-      next();
+      req.headers.username == "demo" && req.headers.password == "demo" ? next() : res.status(401).json({ error: "Invalid user ID" });
     }
-  } catch {
+  } catch(err) {
     res.status(401).json({
-      error: 'Invalid request!'
+      error: err
     });
   }
 };
